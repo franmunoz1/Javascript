@@ -3,18 +3,25 @@ let condicion
 do {
     alert("Realiza tu consulta")
     const PRECIO = parseFloat(prompt("Ingrese el precio del producto: "))
-    let formapago = prompt("Ingrese la forma de pago con las palabras transferencia/tarjeta: ")
-    if (formapago == "tarjeta") {
+    if (PRECIO > 0) {
+        let formapago = prompt("Ingrese la forma de pago con las palabras transferencia/tarjeta: ")
+        if (formapago == "tarjeta") {
 
-        let cuotas = parseInt(prompt("Ingrese la cantidad de cuotas deseadas 1/3/6/12: "))
-        calcularCuotas(cuotas, PRECIO)
+            let cuotas = parseInt(prompt("Ingrese la cantidad de cuotas deseadas 1/3/6/12: "))
+            calcularCuotas(cuotas, PRECIO)
 
-        if ((cuotas == 1) || (cuotas == 3) || (cuotas == 6) || (cuotas == 12)) {
-            alert("El precio final con " + cuotas + " cuotas es: $" + preciofinal)
+            if ((cuotas == 1) || (cuotas == 3) || (cuotas == 6) || (cuotas == 12)) {
+                alert("El precio final con " + cuotas + " cuotas es: $" + preciofinal)
+            }
+
+        } else if (formapago == "transferencia") {
+            calcularTransferencia(PRECIO)
+        } else {
+            alert("No se ingreso un metodo de pago valido")
         }
 
-    } else if (formapago == "transferencia") {
-        calcularTransferencia(PRECIO)
+    } else {
+        alert("El precio ingresado es invalido")
     }
 
     condicion = prompt("Desea realizar otro calculo si/no: ")
@@ -42,6 +49,7 @@ function calcularCuotas(cuotas, PRECIO) {
             break
 
     }
+
 }
 
 function calcularTransferencia(PRECIO) {
