@@ -3,7 +3,7 @@ let condicion
 do {
     alert("Realiza tu consulta")
     const PRECIO = parseFloat(prompt("Ingrese el precio del producto: "))
-    let formapago = prompt("Ingrese la forma de pago transferencia/tarjeta: ")
+    let formapago = prompt("Ingrese la forma de pago con las palabras transferencia/tarjeta: ")
     if (formapago == "tarjeta") {
 
         let cuotas = parseInt(prompt("Ingrese la cantidad de cuotas deseadas 1/3/6/12: "))
