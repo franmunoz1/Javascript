@@ -30,6 +30,8 @@ do {
 
 alert("Gracias por utilizar el calculador de precio final")
 
+// Funcion para calcular el precio en cuotas
+
 function calcularCuotas(cuotas, PRECIO) {
     switch (cuotas) {
         case 1:
@@ -51,6 +53,8 @@ function calcularCuotas(cuotas, PRECIO) {
     }
 
 }
+
+// Funcion para calcular el precio de transferencia
 
 function calcularTransferencia(PRECIO) {
     preciofinal = PRECIO * 0.9
