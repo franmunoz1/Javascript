@@ -20,7 +20,7 @@ const PRODUCTOS = [
     { marca: "Nox", precio: 3000 },
     { marca: "Head", precio: 2400 },
     { marca: "Babolat", precio: 2700 }
-];
+]
 
 let carrito = []
 
