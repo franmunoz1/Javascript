@@ -1,15 +1,52 @@
 let opcion;
 const PRODUCTOS = [
-    { marca: "Nox", precio: 3000 },
-    { marca: "Head", precio: 2400 },
-    { marca: "Babolat", precio: 2700 }
+    { marca: "nox", precio: 3000 },
+    { marca: "head", precio: 2400 },
+    { marca: "babolat", precio: 2700 }
 ]
+
+let carrito = []
+
+
+let encontrado = false
+
+//forma 1 de buscar un producto
+let marcaPaleta = prompt("Ingrese la marca a buscar: ")
+marcaPaleta = marcaPaleta.toLowerCase();
+
+const resultado = PRODUCTOS.find((el) => el.marca === marcaPaleta)
+carrito.push(resultado)
+console.log(carrito)
+
+//forma 2 de buscar un producto
+// for (let i = 0; i < PRODUCTOS.length; i++) {
+//     if (PRODUCTOS[i].marca === marcaPaleta) {
+//         carrito.push(PRODUCTOS[i])
+//         encontrado = true;
+//     }
+// }
+
+// if (encontrado) {
+//     console.log("El producto fue añadido");
+// } else {
+//     console.log("El producto no fue encontrado")
+// }
+// console.log(carrito)
+
+
+// calcular el total del carrito
+
+let sumatoria = 0;
+
+for (recorridoCarrito of carrito) {
+    sumatoria += recorridoCarrito.precio;
+}
+
+console.log("El precio total del carrito es: " + sumatoria)
 
 function mostrarProductos(PRODUCTOS) {
     console.log(PRODUCTOS)
 }
-
-let carrito = []
 
 let precioAscendente = PRODUCTOS.sort((a, b) =>
     a.precio - b.precio
