@@ -1,4 +1,5 @@
-let opcion;
+// Definicion de arrays de objetos para luego trabajar sobre ellos
+
 const PRODUCTOS = [
     { marca: "nox", precio: 3000 },
     { marca: "head", precio: 2400 },
@@ -6,6 +7,8 @@ const PRODUCTOS = [
 ]
 
 let carrito = []
+
+// Funcion para mostrar los productos segun distintos ordenes
 
 function mostrarProducto(orden) {
 
@@ -22,6 +25,7 @@ function mostrarProducto(orden) {
     console.log(productosOrdenados)
 }
 
+// Funcion para calcular la sumatoria de los productos agregados al carrito
 
 function calcularSumatoria() {
     let sumatoria = 0;
@@ -34,10 +38,13 @@ function calcularSumatoria() {
 
 }
 
+// Funcion para mostrar cualquier array
+
 function mostrarArray(vector) {
     console.log(vector)
 }
 
+// Funcion para buscar un producto por su nombre
 
 function buscarProducto() {
     let buscar = prompt("Ingrese la marca a buscar: ")
@@ -52,6 +59,8 @@ function buscarProducto() {
     }
 }
 
+// Funcion para agregar un producto al carrito segun su marca
+
 function agregarCarrito() {
     let marcaPaleta = prompt("Ingrese la marca a agregar al carrito: ")
     marcaPaleta = marcaPaleta.toLowerCase();
@@ -59,6 +68,8 @@ function agregarCarrito() {
     const resultado = PRODUCTOS.find((el) => el.marca === marcaPaleta)
     carrito.push(resultado)
 }
+
+// Funcion para filtrar productos mayores a un precio ingresado por teclado
 
 function filtrarProducto() {
     let precioUsuario = parseInt(prompt("Ingrese un precio para filtrar productos con precio mayor a: "))
@@ -71,37 +82,46 @@ function filtrarProducto() {
 
 alert("Bienvenido al programa, los resultados se mostraran en consola.")
 
+let opcion;
+
+let fechaCompra = new Date();
+
 do {
-    alert("Ingrese alguna opcion:\n1- Listar productos por precio\n2- Buscar producto \n3- Agregar producto al carrito segun marca \n4- Mostrar total carrito \n5- Filtrar productos por precio \n6- Salir")
-    opcion = parseInt(prompt("Ingrese un numero: "))
+    alert("Ingrese alguna opcion:\n1- Listar productos por precio\n2- Buscar producto \n3- Agregar producto al carrito segun marca \n4- Mostrar productos en carrito \n5- Filtrar productos por precio \n6- Comprar \n7- Salir")
+    opcion = parseInt(prompt("Ingrese un numero: "));
     switch (opcion) {
         case 1:
             orden = prompt("Ingrese el orden a mostrar los productos por precio asc/des/sin: ");
             mostrarProducto(orden);
             break;
         case 2:
-            buscarProducto()
-            break
+            buscarProducto();
+            break;
         case 3:
             agregarCarrito();
-            break
+            break;
         case 4:
-            console.log("El carrito esta compuesto por los siguientes productos:")
-            mostrarArray(carrito);
-            console.log("La sumatoria del carrito da en total:")
-            calcularSumatoria();
-            break
+            if (carrito.length > 0) {
+                console.log("El carrito esta compuesto por los siguientes productos:");
+                mostrarArray(carrito);
+            } else {
+                console.log("El carrito se encuentra vacio");
+            }
+            break;
         case 5:
             filtrarProducto();
-            break
-
+            break;
+        case 6:
+            if (carrito.length > 0) {
+                calcularSumatoria();
+                console.log("La fecha de compra fue: " + fechaCompra.toLocaleString());
+            } else {
+                console.log("El carrito se encuentra vacio");
+            }
+            break;
     }
-} while (opcion != 6)
+} while (opcion != 7)
 
-alert("Gracias por visitar nuestra tienda")
+alert("Gracias por visitar nuestra tienda!");
 
-let fechaCompra = new Date();
 
-if (carrito.length > 0) {
-    console.log("La fecha de compra fue: " + fechaCompra.toLocaleString)
-}
