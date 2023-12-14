@@ -7,72 +7,101 @@ const PRODUCTOS = [
 
 let carrito = []
 
+function mostrarProducto(orden) {
 
-let encontrado = false
+    let productosOrdenados;
 
-//forma 1 de buscar un producto
-let marcaPaleta = prompt("Ingrese la marca a buscar: ")
-marcaPaleta = marcaPaleta.toLowerCase();
+    if (orden === "asc") {
+        productosOrdenados = PRODUCTOS.sort((a, b) => a.precio - b.precio)
+    } else if (orden === "des") {
+        productosOrdenados = PRODUCTOS.sort((a, b) => b.precio - a.precio)
+    } else {
+        productosOrdenados = PRODUCTOS
+    }
 
-const resultado = PRODUCTOS.find((el) => el.marca === marcaPaleta)
-carrito.push(resultado)
-console.log(carrito)
-
-//forma 2 de buscar un producto
-// for (let i = 0; i < PRODUCTOS.length; i++) {
-//     if (PRODUCTOS[i].marca === marcaPaleta) {
-//         carrito.push(PRODUCTOS[i])
-//         encontrado = true;
-//     }
-// }
-
-// if (encontrado) {
-//     console.log("El producto fue añadido");
-// } else {
-//     console.log("El producto no fue encontrado")
-// }
-// console.log(carrito)
-
-
-// calcular el total del carrito
-
-let sumatoria = 0;
-
-for (recorridoCarrito of carrito) {
-    sumatoria += recorridoCarrito.precio;
+    console.log(productosOrdenados)
 }
 
-console.log("El precio total del carrito es: " + sumatoria)
 
-function mostrarProductos(PRODUCTOS) {
-    console.log(PRODUCTOS)
+function calcularSumatoria() {
+    let sumatoria = 0;
+
+    for (recorridoCarrito of carrito) {
+        sumatoria += recorridoCarrito.precio;
+    }
+
+    console.log("El precio total del carrito es: " + sumatoria)
+
 }
 
-let precioAscendente = PRODUCTOS.sort((a, b) =>
-    a.precio - b.precio
-)
+function mostrarArray(vector) {
+    console.log(vector)
+}
 
-// console.log(precioAscendente)
 
-// carrito.push(PRODUCTOS[1])
+function buscarProducto() {
+    let buscar = prompt("Ingrese la marca a buscar: ")
 
-// console.log(carrito)
+    const busqueda = PRODUCTOS.find((prod) => prod.marca === buscar)
+
+    if (busqueda === undefined) {
+        console.log("No se encontro el producto ")
+    } else {
+        console.log("El producto fue encontrado: ")
+        console.log(busqueda)
+    }
+}
+
+function agregarCarrito() {
+    let marcaPaleta = prompt("Ingrese la marca a agregar al carrito: ")
+    marcaPaleta = marcaPaleta.toLowerCase();
+
+    const resultado = PRODUCTOS.find((el) => el.marca === marcaPaleta)
+    carrito.push(resultado)
+}
+
+function filtrarProducto() {
+    let precioUsuario = parseInt(prompt("Ingrese un precio para filtrar productos con precio mayor a: "))
+
+    const filtrado = PRODUCTOS.filter((prod) => prod.precio > precioUsuario)
+
+    console.log(filtrado)
+}
+
 
 alert("Bienvenido al programa, los resultados se mostraran en consola.")
 
 do {
-    alert("Ingrese alguna opcion:")
-    alert("1- Listar productos | 2- Listar productos en forma ascendente | 3- Salir")
+    alert("Ingrese alguna opcion:\n1- Listar productos por precio\n2- Buscar producto \n3- Agregar producto al carrito segun marca \n4- Mostrar total carrito \n5- Filtrar productos por precio \n6- Salir")
     opcion = parseInt(prompt("Ingrese un numero: "))
     switch (opcion) {
         case 1:
-            mostrarProductos(PRODUCTOS);
-            break
+            orden = prompt("Ingrese el orden a mostrar los productos por precio asc/des/sin: ");
+            mostrarProducto(orden);
+            break;
         case 2:
-            console.log(precioAscendente)
+            buscarProducto()
             break
-
+        case 3:
+            agregarCarrito();
+            break
+        case 4:
+            console.log("El carrito esta compuesto por los siguientes productos:")
+            mostrarArray(carrito);
+            console.log("La sumatoria del carrito da en total:")
+            calcularSumatoria();
+            break
+        case 5:
+            filtrarProducto();
+            break
 
     }
-} while (opcion != 3)
+} while (opcion != 6)
 
+alert("Gracias por visitar nuestra tienda")
+
+let fechaCompra = new Date();
+
+if (carrito.length > 0) {
+    console.log("La fecha de compra fue: " + fechaCompra.toLocaleString)
+}
