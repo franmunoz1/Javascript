@@ -4,5 +4,4 @@ Se desarrollara en este repositorio las entregas correspondientes a la comision 
 
 ## Uso del programa
 
-Para utilizar el programa se le solicitara al usuario que ingrese un precio de producto y a partir de ese precio que se elija la forma de pago para ese producto.
-Si la forma de pago fuera tarjeta, se le da la opcion al usuario que elija cuantos pagos desea aplicar, mostrandole al usuario cuanto seria el precio final a pagar.
+Para utilizar el programa se le mostrara al usuario un "menu de opciones" en donde el debera ingresar la opcion que desee. Todos los resultados seran mostrados en la consola. Se desarrollo un archivo html para mostrarle al usuario cuales son los productos que se ofrecen en la tienda.
