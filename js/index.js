@@ -1,9 +1,10 @@
 // Definicion de arrays de objetos para luego trabajar sobre ellos
 
 const PRODUCTOS = [
-    { marca: "nox", precio: 3000 },
-    { marca: "head", precio: 2400 },
-    { marca: "babolat", precio: 2700 }
+    { marca: "nox", precio: 310000 },
+    { marca: "head", precio: 240000 },
+    { marca: "babolat", precio: 270000 },
+    { marca: "bullpadel", precio: 350000 },
 ]
 
 let carrito = []
