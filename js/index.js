@@ -7,8 +7,6 @@ const PRODUCTOS = [
     { marca: "bullpadel", precio: 350000, img: "https://acdn.mitiendanube.com/stores/003/106/548/products/1231dd5ac892f5922962eb1688573277080910241024-30d37536070c8afb5917007696714625-1024-1024.webp" },
 ]
 
-let numero = 350
-
 const contenedorProductos = document.getElementById("contenedorProductos")
 
 PRODUCTOS.forEach(producto => {
@@ -40,12 +38,14 @@ PRODUCTOS.forEach(producto => {
     contenedorProductos.appendChild(div)
 })
 
-const precioCarrito = document.getElementById("carrito")
+let numero = 350
 
-precioCarrito.innerHTML = `
-                            <h2>El precio del carrito es: ${numero}</h2>
+// const precioCarrito = document.getElementById("carrito")
 
-`
+// precioCarrito.innerHTML = `
+//                             <h2>El precio del carrito es: ${numero}</h2>
+
+// `
 
 let carrito = []
 
@@ -172,15 +172,33 @@ carrito.forEach(carrito => {
     const div = document.createElement("div")
 
     div.innerHTML = `
-                <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src=${carrito.img} alt="">
-                <div class="min-w-0 flex-auto">
-                    <p class="text-sm font-semibold leading-6 text-gray-900">${carrito.marca}</p>
-                    <p class="mt-1 truncate text-xs leading-5 text-gray-500">${carrito.precio}</p>
-                </div>    
+                    <div class="group relative">
+                        <div
+                            class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+                            <img src=${carrito.img}
+                                alt="Front of men&#039;s Basic Tee in black."
+                                class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+                        </div>
+                        <div class="mt-4 flex justify-between">
+                            <div>
+                                <h3 class="text-sm text-gray-700">
+                                    <a href="#">
+                                        <span aria-hidden="true" class="absolute inset-0"></span>
+                                        ${carrito.marca}
+                                    </a>
+                                </h3>
+                            </div>
+                            <p class="text-sm font-medium text-gray-900">$ ${carrito.precio}</p>
+                        </div>
+                    </div>   
     
     `
 
     contenedorCarrito.appendChild(div)
 })
+
+const precioCarrito = document.getElementById("carrito")
+
+
 
 
