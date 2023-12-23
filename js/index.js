@@ -102,13 +102,22 @@ function buscarProducto() {
 
 // Funcion para agregar un producto al carrito segun su marca
 
-function agregarCarrito() {
-    let marcaPaleta = prompt("Ingrese la marca a agregar al carrito: ")
-    marcaPaleta = marcaPaleta.toLowerCase();
+const botonAnadir = document.getElementById("addCard")
 
-    const resultado = PRODUCTOS.find((el) => el.marca === marcaPaleta)
-    carrito.push(resultado)
-}
+botonAnadir.addEventListener("click", () => {
+
+
+    carrito.push()
+
+})
+
+// function agregarCarrito() {
+//     let marcaPaleta = prompt("Ingrese la marca a agregar al carrito: ")
+//     marcaPaleta = marcaPaleta.toLowerCase();
+
+//     const resultado = PRODUCTOS.find((el) => el.marca === marcaPaleta)
+//     carrito.push(resultado)
+// }
 
 // Funcion para filtrar productos mayores a un precio ingresado por teclado
 
@@ -153,13 +162,13 @@ do {
             filtrarProducto();
             break;
         case 6:
-            if (carrito.length > 0) {
-                calcularSumatoria();
-                console.log("La fecha de compra fue: " + fechaCompra.toLocaleString());
-            } else {
-                console.log("El carrito se encuentra vacio");
-            }
-            break;
+        // if (carrito.length > 0) {
+        //     calcularSumatoria();
+        //     console.log("La fecha de compra fue: " + fechaCompra.toLocaleString());
+        // } else {
+        //     console.log("El carrito se encuentra vacio");
+        // }
+        // break;
     }
 } while (opcion != 7)
 
