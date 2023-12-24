@@ -35,6 +35,7 @@ buttonCancelar.addEventListener("click", () => {
     mostrarProductos(PRODUCTOS)
 })
 
+
 function agregarAlCarrito(indice) {
     const productoSeleccionado = PRODUCTOS[indice];
     carrito.push(productoSeleccionado);
@@ -46,7 +47,56 @@ function mostrarCarrito() {
     console.log("Contenido del carrito:", carrito);
 }
 
+function calcularSumatoria(carrito) {
+    let sumatoria = 0;
+
+    carrito.forEach((producto) => {
+        sumatoria += producto.precio
+    })
+
+    return sumatoria
+}
+
 mostrarCarrito()
+
+buttonCart = document.getElementById("buttonCart")
+buttonCart.addEventListener("click", () => {
+    let contenedorCarrito = document.getElementById("cartProducts")
+    contenedorCarrito.innerHTML = ""
+    if (carrito.length == 0) {
+        let aviso = document.createElement("div")
+        aviso.innerHTML = `<p>El carrito esta vacio</p>`
+        contenedorCarrito.appendChild(aviso)
+    } else {
+        carrito.forEach((producto) => {
+            let div = document.createElement("div");
+            div.innerHTML = `<div class="card mb-3" style="max-width: 540px;">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src="${producto.image}" class="img-fluid rounded-start" alt="...">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">${producto.marca}</h5>
+                                            <p class="card-text">${producto.modelo}</p>
+                                            <p class="card-text">${producto.precio}</p>
+                                        </div>
+                                    </div>
+                                    <button id="btnCartQuit" class="btn btn-danger">Quitar</button>
+                                </div>
+                            </div>
+                            <hr>
+                            `;
+            contenedorCarrito.appendChild(div);
+        });
+    }
+
+    let total = document.createElement("div");
+    total.innerHTML = `<span>Total: $ ${calcularSumatoria(carrito)}</span>`
+    contenedorCarrito.appendChild(total)
+})
+
+
 
 
 
