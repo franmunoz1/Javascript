@@ -6,7 +6,10 @@ const PRODUCTOS = [
     { indice: 4, marca: "bullpadel", modelo: "vertex03", categoria: "pelota", peso: 370, material: "fibra", forma: "redonda", precio: 450, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/1231dd5ac892f5922962eb1688573277080910241024-30d37536070c8afb5917007696714625-1024-1024.webp" }
 ]
 
-const carrito = []
+//const carrito = []
+
+const carritoEnLocalStorage = localStorage.getItem("carrito");
+const carrito = carritoEnLocalStorage ? JSON.parse(carritoEnLocalStorage) : [];
 
 function mostrarProductos(array) {
     let contenedorProductos = document.getElementById("contenedorProductos");
@@ -40,25 +43,11 @@ function agregarAlCarrito(indice) {
     const productoSeleccionado = PRODUCTOS[indice];
     carrito.push(productoSeleccionado);
     console.log("Producto añadido al carrito:", productoSeleccionado);
+    actualizarLocalStorage()
     mostrarCarrito()
-    // convertimos a json el objeto para almacenarlo
 
-    const carritoJSON = JSON.stringify(carrito)
-
-    console.log(carritoJSON)
-
-    // almacenar carrito en local storage
-
-    localStorage.setItem("carrito1", carritoJSON)
-
-    const carritoRecuperado = localStorage.getItem("carrito1")
-
-    // convertimos json a un objeto
-
-    const carritoObj = JSON.parse(carritoJSON)
-
-    console.log(carritoObj)
 }
+
 
 function mostrarCarrito() {
     console.log("Contenido del carrito:", carrito);
@@ -78,14 +67,23 @@ mostrarCarrito()
 
 buttonCart = document.getElementById("buttonCart")
 buttonCart.addEventListener("click", () => {
+
+    const carritoJson = JSON.stringify(carrito)
+
+    localStorage.setItem("carrito", carritoJson)
+
+    const carritoObjeto = JSON.parse(carritoJson)
+
+    console.log(carritoObjeto)
+
     let contenedorCarrito = document.getElementById("cartProducts")
     contenedorCarrito.innerHTML = ""
-    if (carrito.length == 0) {
+    if (carritoObjeto.length == 0) {
         let aviso = document.createElement("div")
         aviso.innerHTML = `<p>El carrito esta vacio</p>`
         contenedorCarrito.appendChild(aviso)
     } else {
-        carrito.forEach((producto) => {
+        carritoObjeto.forEach((producto) => {
             let div = document.createElement("div");
             div.innerHTML = `<div class="card mb-3" style="max-width: 540px;">
                                 <div class="row g-0">
@@ -99,7 +97,7 @@ buttonCart.addEventListener("click", () => {
                                             <p class="card-text">${producto.precio}</p>
                                         </div>
                                     </div>
-                                    <button id="btnCartQuit" class="btn btn-danger">Quitar</button>
+                                    <button id="${producto.indice}" onclick="quitarDelCarrito(${producto.indice})" class="btn btn-danger">Quitar</button>
                                 </div>
                             </div>
                             <hr>
@@ -113,10 +111,17 @@ buttonCart.addEventListener("click", () => {
     contenedorCarrito.appendChild(total)
 })
 
+function quitarDelCarrito(indice) {
+    carrito.splice(PRODUCTOS[indice], 1);
+    console.log("Producto añadido al carrito:", productoSeleccionado);
+    actualizarLocalStorage()
+    mostrarCarrito()
+}
 
-
-
-
+function actualizarLocalStorage() {
+    const carritoJson = JSON.stringify(carrito);
+    localStorage.setItem("carrito", carritoJson);
+}
 
 
 function filtrarProductos(precio, operador) {
@@ -192,7 +197,6 @@ buttonPelotas.addEventListener("click", () => {
 });
 
 let buttonFiltrarPrecio = document.getElementById("buttonFiltrarPrecio");
-
 buttonFiltrarPrecio.addEventListener("click", () => {
     let inputPrecio = document.getElementById("inputPrecio");
     let precioIngresado = parseFloat(inputPrecio.value);
@@ -205,3 +209,4 @@ buttonFiltrarPrecio.addEventListener("click", () => {
         alert("Por favor, ingrese un valor numérico válido.");
     }
 });
+
