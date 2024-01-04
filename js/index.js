@@ -1,11 +1,51 @@
 // Definicion de arrays de objetos para luego trabajar sobre ellos
 
 const PRODUCTOS = [
-    { marca: "nox", precio: 310000 },
-    { marca: "head", precio: 240000 },
-    { marca: "babolat", precio: 270000 },
-    { marca: "bullpadel", precio: 350000 },
+    { marca: "nox", precio: 310000, img: "https://acdn.mitiendanube.com/stores/003/106/548/products/125134708fdb936c7141781687528113276410241024-c651a71768ec09e45b17024981446326-1024-1024.webp" },
+    { marca: "head", precio: 240000, img: "https://acdn.mitiendanube.com/stores/003/106/548/products/141e601bce500d13ef9791688506029202910241024-cba846114b0b7471f217024714200157-1024-1024.webp" },
+    { marca: "babolat", precio: 270000, img: "https://acdn.mitiendanube.com/stores/003/106/548/products/16130654e25e5061dd5611694645239469910241024-22beccae8cc3aee1a617024727793935-1024-1024.webp" },
+    { marca: "bullpadel", precio: 350000, img: "https://acdn.mitiendanube.com/stores/003/106/548/products/1231dd5ac892f5922962eb1688573277080910241024-30d37536070c8afb5917007696714625-1024-1024.webp" },
 ]
+
+const contenedorProductos = document.getElementById("contenedorProductos")
+
+PRODUCTOS.forEach(producto => {
+
+    const div = document.createElement("div")
+
+    div.innerHTML = `
+                    <div class="group relative">
+                        <div
+                            class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+                            <img src=${producto.img}
+                                alt="Front of men&#039;s Basic Tee in black."
+                                class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+                        </div>
+                        <div class="mt-4 flex justify-between">
+                            <div>
+                                <h3 class="text-sm text-gray-700">
+                                    <a href="#">
+                                        <span aria-hidden="true" class="absolute inset-0"></span>
+                                        ${producto.marca}
+                                    </a>
+                                </h3>
+                            </div>
+                            <p class="text-sm font-medium text-gray-900">$ ${producto.precio}</p>
+                        </div>
+                    </div>
+    `
+
+    contenedorProductos.appendChild(div)
+})
+
+let numero = 350
+
+// const precioCarrito = document.getElementById("carrito")
+
+// precioCarrito.innerHTML = `
+//                             <h2>El precio del carrito es: ${numero}</h2>
+
+// `
 
 let carrito = []
 
@@ -62,13 +102,22 @@ function buscarProducto() {
 
 // Funcion para agregar un producto al carrito segun su marca
 
-function agregarCarrito() {
-    let marcaPaleta = prompt("Ingrese la marca a agregar al carrito: ")
-    marcaPaleta = marcaPaleta.toLowerCase();
+const botonAnadir = document.getElementById("addCard")
 
-    const resultado = PRODUCTOS.find((el) => el.marca === marcaPaleta)
-    carrito.push(resultado)
-}
+botonAnadir.addEventListener("click", () => {
+
+
+    carrito.push()
+
+})
+
+// function agregarCarrito() {
+//     let marcaPaleta = prompt("Ingrese la marca a agregar al carrito: ")
+//     marcaPaleta = marcaPaleta.toLowerCase();
+
+//     const resultado = PRODUCTOS.find((el) => el.marca === marcaPaleta)
+//     carrito.push(resultado)
+// }
 
 // Funcion para filtrar productos mayores a un precio ingresado por teclado
 
@@ -113,16 +162,52 @@ do {
             filtrarProducto();
             break;
         case 6:
-            if (carrito.length > 0) {
-                calcularSumatoria();
-                console.log("La fecha de compra fue: " + fechaCompra.toLocaleString());
-            } else {
-                console.log("El carrito se encuentra vacio");
-            }
-            break;
+        // if (carrito.length > 0) {
+        //     calcularSumatoria();
+        //     console.log("La fecha de compra fue: " + fechaCompra.toLocaleString());
+        // } else {
+        //     console.log("El carrito se encuentra vacio");
+        // }
+        // break;
     }
 } while (opcion != 7)
 
 alert("Gracias por visitar nuestra tienda!");
+
+const contenedorCarrito = document.getElementById("contenedorCarrito")
+
+carrito.forEach(carrito => {
+
+    const div = document.createElement("div")
+
+    div.innerHTML = `
+                    <div class="group relative">
+                        <div
+                            class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+                            <img src=${carrito.img}
+                                alt="Front of men&#039;s Basic Tee in black."
+                                class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+                        </div>
+                        <div class="mt-4 flex justify-between">
+                            <div>
+                                <h3 class="text-sm text-gray-700">
+                                    <a href="#">
+                                        <span aria-hidden="true" class="absolute inset-0"></span>
+                                        ${carrito.marca}
+                                    </a>
+                                </h3>
+                            </div>
+                            <p class="text-sm font-medium text-gray-900">$ ${carrito.precio}</p>
+                        </div>
+                    </div>   
+    
+    `
+
+    contenedorCarrito.appendChild(div)
+})
+
+const precioCarrito = document.getElementById("carrito")
+
+
 
 
