@@ -1,9 +1,9 @@
 const PRODUCTOS = [
     { indice: 0, marca: "nox", modelo: "ml10", categoria: "paleta", peso: 350, material: "fibra", forma: "redonda", precio: 280, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/125134708fdb936c7141781687528113276410241024-c651a71768ec09e45b17024981446326-1024-1024.webp" },
-    { indice: 1, marca: "head", modelo: "delta", categoria: "paleta", peso: 380, material: "fibra", forma: "redonda", precio: 200, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/141e601bce500d13ef9791688506029202910241024-cba846114b0b7471f217024714200157-1024-1024.webp" },
-    { indice: 2, marca: "babolat", modelo: "counter", categoria: "paleta", peso: 360, material: "fibra", forma: "redonda", precio: 400, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/16130654e25e5061dd5611694645239469910241024-22beccae8cc3aee1a617024727793935-1024-1024.webp" },
-    { indice: 3, marca: "bullpadel", modelo: "vertex03", categoria: "paleta", peso: 370, material: "fibra", forma: "redonda", precio: 450, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/1231dd5ac892f5922962eb1688573277080910241024-30d37536070c8afb5917007696714625-1024-1024.webp" },
-    { indice: 4, marca: "bullpadel", modelo: "vertex03", categoria: "pelota", peso: 370, material: "fibra", forma: "redonda", precio: 450, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/1231dd5ac892f5922962eb1688573277080910241024-30d37536070c8afb5917007696714625-1024-1024.webp" }
+    { indice: 1, marca: "head", modelo: "delta", categoria: "paleta", peso: 380, material: "fibra", forma: "redonda", precio: 200, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/speedpro23_1-a2d2897e5be668f16017043096906426-1024-1024.webp" },
+    { indice: 2, marca: "babolat", modelo: "counter", categoria: "paleta", peso: 360, material: "fibra", forma: "redonda", precio: 400, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/16130654e25e5061dd5611694645239469910241024-5ce0329ee2711bbed117031707437404-1024-1024.webp" },
+    { indice: 3, marca: "bullpadel", modelo: "vertex03", categoria: "paleta", peso: 370, material: "fibra", forma: "redonda", precio: 450, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/1231dd5ac892f5922962eb1688573277080910241024-4747a21cd0e57dd10a17037779963952-1024-1024.webp" },
+    { indice: 4, marca: "bullpadel", modelo: "vertex03", categoria: "pelota", peso: 370, material: "fibra", forma: "redonda", precio: 450, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/1231dd5ac892f5922962eb1688573277080910241024-4747a21cd0e57dd10a17037779963952-1024-1024.webp" }
 ]
 
 //const carrito = []
@@ -99,6 +99,7 @@ buttonCart.addEventListener("click", () => {
                                     </div>
                                     <button id="${producto.indice}" onclick="quitarDelCarrito(${producto.indice})" class="btn btn-danger">Quitar</button>
                                 </div>
+                                
                             </div>
                             <hr>
                             `;
@@ -107,16 +108,26 @@ buttonCart.addEventListener("click", () => {
     }
 
     let total = document.createElement("div");
-    total.innerHTML = `<span>Total: $ ${calcularSumatoria(carrito)}</span>`
+    total.innerHTML = `<span>Total: $ ${calcularSumatoria(carrito)}</span>
+    <button class="btn btn-success">Pagar</button>`
     contenedorCarrito.appendChild(total)
 })
 
 function quitarDelCarrito(indice) {
-    carrito.splice(PRODUCTOS[indice], 1);
-    console.log("Producto añadido al carrito:", productoSeleccionado);
-    actualizarLocalStorage()
-    mostrarCarrito()
+    // Busca el índice del producto en el array carrito
+    const index = carrito.findIndex(producto => producto.indice === indice);
+
+    if (index !== -1) {
+        // Elimina el producto del array carrito
+        carrito.splice(index, 1);
+        console.log("Producto eliminado del carrito:", indice);
+        actualizarLocalStorage();
+        mostrarCarrito();
+    } else {
+        console.error("Producto no encontrado en el carrito:", indice);
+    }
 }
+
 
 function actualizarLocalStorage() {
     const carritoJson = JSON.stringify(carrito);
@@ -134,6 +145,7 @@ function filtrarProductos(precio, operador) {
         return false;
     });
 }
+
 
 let buttonFiltro = document.getElementById("buttonFiltro");
 buttonFiltro.addEventListener("click", () => {
