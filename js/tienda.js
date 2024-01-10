@@ -20,6 +20,8 @@ const PRODUCTOS = [
 const carritoEnLocalStorage = localStorage.getItem("carrito");
 const carrito = carritoEnLocalStorage ? JSON.parse(carritoEnLocalStorage) : [];
 
+mostrarCarrito()
+
 function mostrarProductos(array) {
     let contenedorProductos = document.getElementById("contenedorProductos");
 
@@ -51,7 +53,6 @@ buttonCancelar.addEventListener("click", () => {
 function agregarAlCarrito(indice) {
     const productoSeleccionado = PRODUCTOS[indice];
     carrito.push(productoSeleccionado);
-    console.log("Producto añadido al carrito:", productoSeleccionado);
     actualizarLocalStorage()
     mostrarCarrito()
 
@@ -60,11 +61,9 @@ function agregarAlCarrito(indice) {
 
 
 function mostrarCarrito() {
-    console.log("Contenido del carrito:", carrito);
 
     let buttonNumeroCarrito = document.getElementById("buttonCart");
     buttonNumeroCarrito.innerHTML = `<i class="fa-solid fa-cart-shopping fa-2xl"></i> <span class="badge text-bg-secondary">${carrito.length}</span>`;
-
 
 }
 
@@ -79,7 +78,7 @@ function calcularSumatoria(carrito) {
     return sumatoria
 }
 
-mostrarCarrito()
+
 
 buttonCart = document.getElementById("buttonCart")
 buttonCart.addEventListener("click", () => {
@@ -89,8 +88,6 @@ buttonCart.addEventListener("click", () => {
     localStorage.setItem("carrito", carritoJson)
 
     const carritoObjeto = JSON.parse(carritoJson)
-
-    console.log(carritoObjeto)
 
     let contenedorCarrito = document.getElementById("cartProducts")
     contenedorCarrito.innerHTML = ""
@@ -108,9 +105,9 @@ buttonCart.addEventListener("click", () => {
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">
-                                            <h5 class="card-title">${producto.marca}</h5>
-                                            <p class="card-text">${producto.modelo}</p>
-                                            <p class="card-text">${producto.precio}</p>
+                                            <h5 class="card-title">Marca: ${producto.marca}</h5>
+                                            <p class="card-text">Modelo: ${producto.modelo}</p>
+                                            <p class="card-text">Precio: $${producto.precio}</p>
                                         </div>
                                     </div>
                                     <button id="${producto.indice}" onclick="quitarDelCarrito(${producto.indice})" class="btn btn-danger">Quitar</button>
@@ -125,8 +122,10 @@ buttonCart.addEventListener("click", () => {
 
     let total = document.createElement("div");
     if (carrito.length > 0) {
-        total.innerHTML = `<span>Total: $ ${calcularSumatoria(carrito)}</span>
-        <button class="btn btn-success">Pagar</button>`
+        total.innerHTML = `<div class="d-flex justify-content-around">
+            <span>Total a pagar: $${calcularSumatoria(carrito)}</span>
+             <button class="btn btn-success">Pagar</button>
+        </div>`
     }
 
     contenedorCarrito.appendChild(total)
@@ -139,7 +138,6 @@ function quitarDelCarrito(indice) {
     if (index !== -1) {
 
         carrito.splice(index, 1);
-        console.log("Producto eliminado del carrito:", indice);
         actualizarLocalStorage();
         mostrarCarrito();
     } else {
@@ -152,6 +150,7 @@ function quitarDelCarrito(indice) {
 function actualizarLocalStorage() {
     const carritoJson = JSON.stringify(carrito);
     localStorage.setItem("carrito", carritoJson);
+    mostrarCarrito()
 }
 
 
@@ -167,47 +166,33 @@ function filtrarProductos(precio, operador) {
 }
 
 
-let buttonFiltro = document.getElementById("buttonFiltro");
-buttonFiltro.addEventListener("click", () => {
-    let precio = 300;
-    let filtro = filtrarProductos(precio, ">");
-    mostrarProductos(filtro);
-});
+function ordenAscendente() {
+    return PRODUCTOS.slice().sort((a, b) => a.precio - b.precio);
+}
 
-let buttonFiltro2 = document.getElementById("buttonFiltro2");
-buttonFiltro2.addEventListener("click", () => {
-    let precio = 300;
-    let filtro2 = filtrarProductos(precio, "<");
-    mostrarProductos(filtro2);
-});
-
-
-
-
-const productosOrdenadosAscendente = PRODUCTOS.slice().sort((a, b) => a.precio - b.precio);
-
-
-
-const productosOrdenadosDescendente = PRODUCTOS.slice().sort((a, b) => b.precio - a.precio);
+function ordenDescendente() {
+    return PRODUCTOS.slice().sort((a, b) => b.precio - a.precio);
+}
 
 
 let buttonOrderAsc = document.getElementById("buttonOrderAsc")
 buttonOrderAsc.addEventListener("click", () => {
 
-    mostrarProductos(productosOrdenadosAscendente)
+    mostrarProductos(ordenAscendente())
 
 })
 
 let buttonOrderDes = document.getElementById("buttonOrderDesc")
 buttonOrderDes.addEventListener("click", () => {
 
-    mostrarProductos(productosOrdenadosDescendente)
+    mostrarProductos(ordenDescendente())
 
 })
 
 function filtrarProductosCategoria(categoria) {
     return PRODUCTOS.filter(producto => producto.categoria === categoria);
 }
+
 
 
 let buttonPaletas = document.getElementById("buttonPaletas");
@@ -228,13 +213,52 @@ buttonPelotas.addEventListener("click", () => {
     mostrarProductos(filtroPelotas);
 });
 
+function filtrarProductosMarca(marca) {
+    return PRODUCTOS.filter(producto => producto.marca === marca);
+}
+
+let buttonBrandNox = document.getElementById("buttonBrandNox");
+buttonBrandNox.addEventListener("click", () => {
+    let filtroNox = filtrarProductosMarca("nox");
+    mostrarProductos(filtroNox);
+});
+
+let buttonBrandHead = document.getElementById("buttonBrandHead");
+buttonBrandHead.addEventListener("click", () => {
+    let filtroHead = filtrarProductosMarca("head");
+    mostrarProductos(filtroHead);
+});
+
+let buttonBrandAdidas = document.getElementById("buttonBrandAdidas");
+buttonBrandAdidas.addEventListener("click", () => {
+    let filtroAdidas = filtrarProductosMarca("adidas");
+    mostrarProductos(filtroAdidas);
+});
+
+let buttonBrandVarlion = document.getElementById("buttonBrandVarlion");
+buttonBrandVarlion.addEventListener("click", () => {
+    let filtroVarlion = filtrarProductosMarca("varlion");
+    mostrarProductos(filtroVarlion);
+});
+
+let buttonBrandBullpadel = document.getElementById("buttonBrandBullpadel");
+buttonBrandBullpadel.addEventListener("click", () => {
+    let filtroBullpadel = filtrarProductosMarca("bullpadel");
+    mostrarProductos(filtroBullpadel);
+});
+
+let buttonBrandBabolat = document.getElementById("buttonBrandBabolat");
+buttonBrandBabolat.addEventListener("click", () => {
+    let filtroBabolat = filtrarProductosMarca("babolat");
+    mostrarProductos(filtroBabolat);
+});
+
 let buttonFiltrarPrecio = document.getElementById("buttonFiltrarPrecio");
 buttonFiltrarPrecio.addEventListener("click", () => {
     let inputPrecio = document.getElementById("inputPrecio");
     let precioIngresado = parseFloat(inputPrecio.value);
 
     if (!isNaN(precioIngresado)) {
-        // Verifica que el valor ingresado sea un número
         let productosFiltrados = filtrarProductos(precioIngresado, ">");
         mostrarProductos(productosFiltrados);
     } else {

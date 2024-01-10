@@ -11,3 +11,10 @@
     grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
     gap: 1rem;
 }
+
+@media (max-widht: 700px) {
+    .filters {
+        display: flex;
+        flex-direction: column;
+    }
+}
