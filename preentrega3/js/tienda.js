@@ -60,9 +60,16 @@ function agregarAlCarrito(indice) {
 }
 
 
+
 function mostrarCarrito() {
     console.log("Contenido del carrito:", carrito);
+
+    let buttonNumeroCarrito = document.getElementById("buttonCart");
+    buttonNumeroCarrito.innerHTML = `<i class="fa-solid fa-cart-shopping fa-2xl"></i> <span class="badge text-bg-secondary">${carrito.length}</span>`;
+
+
 }
+
 
 function calcularSumatoria(carrito) {
     let sumatoria = 0;
@@ -140,6 +147,7 @@ function quitarDelCarrito(indice) {
     } else {
         console.error("Producto no encontrado en el carrito:", indice);
     }
+
 }
 
 
