@@ -1,3 +1,5 @@
+// Definicion de productos de la tienda de padel
+
 const PRODUCTOS = [
     // paletas
     { indice: 0, marca: "nox", modelo: "ml10", categoria: "paleta", peso: 350, material: "fibra", forma: "redonda", precio: 280, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/americavseuropa_3-9a09f8ba2febec08b517048186583436-1024-1024.webp" },
@@ -17,10 +19,14 @@ const PRODUCTOS = [
     { indice: 12, marca: "adidas", modelo: "ctrl 3.1", categoria: "bolso", material: "fibra", precio: 450, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/146106d52f91d6e43da2921689280009724210241024-65f4b1c2d0cc36965217025773185257-1024-1024.webp" }
 ]
 
+// Definicion de carrito para luego almacenar productos y guardar elementos en local
+
 const carritoEnLocalStorage = localStorage.getItem("carrito");
 const carrito = carritoEnLocalStorage ? JSON.parse(carritoEnLocalStorage) : [];
 
 mostrarCarrito()
+
+// Funcion para mostrar todos los productos de la tienda
 
 function mostrarProductos(array) {
     let contenedorProductos = document.getElementById("contenedorProductos");
@@ -44,11 +50,14 @@ function mostrarProductos(array) {
 
 mostrarProductos(PRODUCTOS)
 
+// Boton para cancelar filtros
+
 let buttonCancelar = document.getElementById("buttonCancelar")
 buttonCancelar.addEventListener("click", () => {
     mostrarProductos(PRODUCTOS)
 })
 
+// Funcion para agregar elementos al carrito
 
 function agregarAlCarrito(indice) {
     const productoSeleccionado = PRODUCTOS[indice];
@@ -58,7 +67,7 @@ function agregarAlCarrito(indice) {
 
 }
 
-
+// Funcion para mostrar carrito
 
 function mostrarCarrito() {
 
@@ -67,6 +76,7 @@ function mostrarCarrito() {
 
 }
 
+// Funcion para mostrar sumatoria del carrito
 
 function calcularSumatoria(carrito) {
     let sumatoria = 0;
@@ -78,7 +88,7 @@ function calcularSumatoria(carrito) {
     return sumatoria
 }
 
-
+// Mostrar elementos dentro del carrito
 
 buttonCart = document.getElementById("buttonCart")
 buttonCart.addEventListener("click", () => {
@@ -120,6 +130,8 @@ buttonCart.addEventListener("click", () => {
         });
     }
 
+    // Mostrar total del carrito
+
     let total = document.createElement("div");
     if (carrito.length > 0) {
         total.innerHTML = `<div class="d-flex justify-content-around">
@@ -130,6 +142,8 @@ buttonCart.addEventListener("click", () => {
 
     contenedorCarrito.appendChild(total)
 })
+
+// Funcion para eliminar elementos del carrito
 
 function quitarDelCarrito(indice) {
 
@@ -146,6 +160,7 @@ function quitarDelCarrito(indice) {
 
 }
 
+// Funcion para actualizar el carrito en localstorage para mantenerlo
 
 function actualizarLocalStorage() {
     const carritoJson = JSON.stringify(carrito);
@@ -153,6 +168,7 @@ function actualizarLocalStorage() {
     mostrarCarrito()
 }
 
+// Funcion para filtrar productos mayor a un numero con el formulario
 
 function filtrarProductos(precio, operador) {
     return PRODUCTOS.filter((prod) => {
@@ -165,6 +181,20 @@ function filtrarProductos(precio, operador) {
     });
 }
 
+let buttonFiltrarPrecio = document.getElementById("buttonFiltrarPrecio");
+buttonFiltrarPrecio.addEventListener("click", () => {
+    let inputPrecio = document.getElementById("inputPrecio");
+    let precioIngresado = parseFloat(inputPrecio.value);
+
+    if (!isNaN(precioIngresado)) {
+        let productosFiltrados = filtrarProductos(precioIngresado, ">");
+        mostrarProductos(productosFiltrados);
+    } else {
+        alert("Por favor, ingrese un valor numérico válido.");
+    }
+});
+
+// Funciones para ordenar los productos de forma ascendente o descendente
 
 function ordenAscendente() {
     return PRODUCTOS.slice().sort((a, b) => a.precio - b.precio);
@@ -174,6 +204,7 @@ function ordenDescendente() {
     return PRODUCTOS.slice().sort((a, b) => b.precio - a.precio);
 }
 
+// Botones para ordenar los productos
 
 let buttonOrderAsc = document.getElementById("buttonOrderAsc")
 buttonOrderAsc.addEventListener("click", () => {
@@ -189,10 +220,11 @@ buttonOrderDes.addEventListener("click", () => {
 
 })
 
+// Funcion para filtrar productos por categoria con sus respectivos botones de categorias
+
 function filtrarProductosCategoria(categoria) {
     return PRODUCTOS.filter(producto => producto.categoria === categoria);
 }
-
 
 
 let buttonPaletas = document.getElementById("buttonPaletas");
@@ -212,6 +244,9 @@ buttonPelotas.addEventListener("click", () => {
     let filtroPelotas = filtrarProductosCategoria("pelota");
     mostrarProductos(filtroPelotas);
 });
+
+
+// Funcion para filtrar productos por marca con sus respectivos botones de nombres de marcas
 
 function filtrarProductosMarca(marca) {
     return PRODUCTOS.filter(producto => producto.marca === marca);
@@ -253,16 +288,5 @@ buttonBrandBabolat.addEventListener("click", () => {
     mostrarProductos(filtroBabolat);
 });
 
-let buttonFiltrarPrecio = document.getElementById("buttonFiltrarPrecio");
-buttonFiltrarPrecio.addEventListener("click", () => {
-    let inputPrecio = document.getElementById("inputPrecio");
-    let precioIngresado = parseFloat(inputPrecio.value);
 
-    if (!isNaN(precioIngresado)) {
-        let productosFiltrados = filtrarProductos(precioIngresado, ">");
-        mostrarProductos(productosFiltrados);
-    } else {
-        alert("Por favor, ingrese un valor numérico válido.");
-    }
-});
 
