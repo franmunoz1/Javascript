@@ -1,12 +1,12 @@
 const PRODUCTOS = [
     // paletas
-    { indice: 0, marca: "nox", modelo: "ml10", categoria: "paleta", peso: 350, material: "fibra", forma: "redonda", precio: 280, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/125134708fdb936c7141781687528113276410241024-c651a71768ec09e45b17024981446326-1024-1024.webp" },
+    { indice: 0, marca: "nox", modelo: "ml10", categoria: "paleta", peso: 350, material: "fibra", forma: "redonda", precio: 280, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/americavseuropa_3-9a09f8ba2febec08b517048186583436-1024-1024.webp" },
     { indice: 1, marca: "head", modelo: "delta", categoria: "paleta", peso: 380, material: "fibra", forma: "redonda", precio: 200, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/speedpro23_1-a2d2897e5be668f16017043096906426-1024-1024.webp" },
     { indice: 2, marca: "babolat", modelo: "counter", categoria: "paleta", peso: 360, material: "fibra", forma: "redonda", precio: 400, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/16130654e25e5061dd5611694645239469910241024-5ce0329ee2711bbed117031707437404-1024-1024.webp" },
     { indice: 3, marca: "bullpadel", modelo: "vertex03", categoria: "paleta", peso: 370, material: "fibra", forma: "redonda", precio: 450, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/1231dd5ac892f5922962eb1688573277080910241024-4747a21cd0e57dd10a17037779963952-1024-1024.webp" },
-    { indice: 4, marca: "nox", modelo: "ml10", categoria: "paleta", peso: 350, material: "fibra", forma: "redonda", precio: 280, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/125134708fdb936c7141781687528113276410241024-c651a71768ec09e45b17024981446326-1024-1024.webp" },
-    { indice: 5, marca: "head", modelo: "delta", categoria: "paleta", peso: 380, material: "fibra", forma: "redonda", precio: 200, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/speedpro23_1-a2d2897e5be668f16017043096906426-1024-1024.webp" },
-    { indice: 6, marca: "babolat", modelo: "counter", categoria: "paleta", peso: 360, material: "fibra", forma: "redonda", precio: 400, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/16130654e25e5061dd5611694645239469910241024-5ce0329ee2711bbed117031707437404-1024-1024.webp" },
+    { indice: 4, marca: "nox", modelo: "ml10", categoria: "paleta", peso: 350, material: "fibra", forma: "redonda", precio: 280, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/125134708fdb936c7141781687528113276410241024-1087bea0b80addf08417048155198724-1024-1024.webp" },
+    { indice: 5, marca: "head", modelo: "delta", categoria: "paleta", peso: 380, material: "fibra", forma: "redonda", precio: 200, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/deltapro_1-9b1a39ac7fa3a6586117048186521136-1024-1024.webp" },
+    { indice: 6, marca: "babolat", modelo: "counter", categoria: "paleta", peso: 360, material: "fibra", forma: "redonda", precio: 400, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/17152dece2f6d47b0526f1694645315367610241024-29076ff32dc3010a1617044820737508-1024-1024.webp" },
     // pelotas
     { indice: 7, marca: "bullpadel", modelo: "premium pro", categoria: "pelota", material: "fibra", precio: 450, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/disenosintitulo20230629t1728316231c1ce3b27794a3a0fbf1688071104293510241024-80ef0ced2f4a6b952b17036163157615-1024-1024.webp" },
     { indice: 8, marca: "babolat", modelo: "all court", categoria: "pelota", material: "fibra", precio: 280, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/tubopelotasbabolatgoldallcourtx3tenis_1-b5f47e92a43d18718c17031978147630-1024-1024.webp" },
@@ -17,14 +17,12 @@ const PRODUCTOS = [
     { indice: 12, marca: "adidas", modelo: "ctrl 3.1", categoria: "bolso", material: "fibra", precio: 450, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/146106d52f91d6e43da2921689280009724210241024-65f4b1c2d0cc36965217025773185257-1024-1024.webp" }
 ]
 
-//const carrito = []
-
 const carritoEnLocalStorage = localStorage.getItem("carrito");
 const carrito = carritoEnLocalStorage ? JSON.parse(carritoEnLocalStorage) : [];
 
 function mostrarProductos(array) {
     let contenedorProductos = document.getElementById("contenedorProductos");
-    // Limpia el contenido actual del contenedor antes de mostrar los nuevos productos
+
     contenedorProductos.innerHTML = "";
 
     array.forEach((producto) => {
@@ -135,11 +133,11 @@ buttonCart.addEventListener("click", () => {
 })
 
 function quitarDelCarrito(indice) {
-    // Busca el índice del producto en el array carrito
+
     const index = carrito.findIndex(producto => producto.indice === indice);
 
     if (index !== -1) {
-        // Elimina el producto del array carrito
+
         carrito.splice(index, 1);
         console.log("Producto eliminado del carrito:", indice);
         actualizarLocalStorage();
@@ -185,11 +183,11 @@ buttonFiltro2.addEventListener("click", () => {
 
 
 
-// Ordenar de manera ascendente por precio
+
 const productosOrdenadosAscendente = PRODUCTOS.slice().sort((a, b) => a.precio - b.precio);
 
 
-// Ordenar de manera descendente por precio
+
 const productosOrdenadosDescendente = PRODUCTOS.slice().sort((a, b) => b.precio - a.precio);
 
 
