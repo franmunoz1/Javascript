@@ -35,8 +35,6 @@
                                 <button id="buttonCart" class="btn btn-primary" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#collapseExample" aria-expanded="false"
                                     aria-controls="collapseExample">
-
-
                                 </button>
                                 <div class="collapse" id="collapseExample">
                                     <div class="card card-body" id="cartProducts">
@@ -52,19 +50,34 @@
         </nav>
     </header>
 
-    <main>
+    <main class="wrapper">
         <div class="container">
             <div class="">
-                <div class="d-flex justify-content-center">
-                    <div class="d-flex" style="gap: 1rem;">
+                <div class="d-flex justify-content-center p-3 filters">
+                    <div class="d-flex p-3" style="gap: 1rem;">
                         <div class="dropdown">
                             <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
-                                Mostrar por precio
+                                Marca
                             </button>
                             <ul class="dropdown-menu">
-                                <button id="buttonFiltro">Mostrar precios mayor a 300</button>
-                                <button id="buttonFiltro2">Mostrar precios menor a 300</button>
+                                <button id="buttonBrandNox">Nox</button>
+                                <button id="buttonBrandHead">Head</button>
+                                <button id="buttonBrandBullpadel">Bullpadel</button>
+                                <button id="buttonBrandBabolat">Babolat</button>
+                                <button id="buttonBrandAdidas">Adidas</button>
+                                <button id="buttonBrandVarlion">Varlion</button>
+                            </ul>
+                        </div>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Categoria
+                            </button>
+                            <ul class="dropdown-menu">
+                                <button id="buttonPaletas">Paletas</button>
+                                <button id="buttonBolsos">Bolsos</button>
+                                <button id="buttonPelotas">Pelotas</button>
                             </ul>
                         </div>
                         <div class="dropdown">
@@ -78,19 +91,15 @@
                             </ul>
                         </div>
                     </div>
-                    <!-- <button id="buttonFiltro">Mostrar precios mayor a 300</button>
-                    <button id="buttonFiltro2">Mostrar precios menor a 300</button>
-                    <button id="buttonOrderAsc">Ordenar por precio ascendente</button>
-                    <button id="buttonOrderDesc">Ordenar por precio descendente</button> -->
-                    <button id="buttonPaletas">Paletas</button>
-                    <button id="buttonBolsos">Bolsos</button>
-                    <button id="buttonPelotas">Pelotas</button>
-                    <button id="buttonCancelar">Cancelar filtros</button>
-                    <!-- Agrega un input y un botón en tu HTML -->
-                    <div>
-                        <label for="inputPrecio">Filtrar por precio:</label>
+
+                    <div class="p-3">
+                        <label for="inputPrecio">Filtrar por precio mayor a:</label>
                         <input type="number" id="inputPrecio" placeholder="Ingrese el precio">
                         <button id="buttonFiltrarPrecio">Filtrar</button>
+                    </div>
+
+                    <div class="p-3">
+                        <button id="buttonCancelar">Cancelar filtros</button>
                     </div>
 
                 </div>
