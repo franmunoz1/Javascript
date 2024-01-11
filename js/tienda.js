@@ -25,6 +25,7 @@ const carritoEnLocalStorage = localStorage.getItem("carrito");
 const carrito = carritoEnLocalStorage ? JSON.parse(carritoEnLocalStorage) : [];
 
 mostrarCarrito()
+botonCarrito()
 
 // Funcion para mostrar todos los productos de la tienda
 
@@ -69,10 +70,10 @@ function agregarAlCarrito(indice) {
 
 // Funcion para mostrar carrito
 
-function mostrarCarrito() {
+function botonCarrito() {
 
     let buttonNumeroCarrito = document.getElementById("buttonCart");
-    buttonNumeroCarrito.innerHTML = `<i class="fa-solid fa-cart-shopping fa-2xl"></i> <span class="badge text-bg-secondary">${carrito.length}</span>`;
+    buttonNumeroCarrito.innerHTML = `<i class="fa-solid fa-cart-shopping fa-2xl"></i><span class="badge text-bg-secondary">${carrito.length}</span>`;
 
 }
 
@@ -90,23 +91,26 @@ function calcularSumatoria(carrito) {
 
 // Mostrar elementos dentro del carrito
 
-buttonCart = document.getElementById("buttonCart")
-buttonCart.addEventListener("click", () => {
+let buttonCart = document.getElementById("buttonCart");
+buttonCart.addEventListener("click", mostrarCarrito);
 
+// Funcion para mostrar carrito
+function mostrarCarrito() {
     const carritoJson = JSON.stringify(carrito)
-
     localStorage.setItem("carrito", carritoJson)
 
     const carritoObjeto = JSON.parse(carritoJson)
 
     let contenedorCarrito = document.getElementById("cartProducts")
     contenedorCarrito.innerHTML = ""
+
     if (carritoObjeto.length == 0) {
         let aviso = document.createElement("div")
-        aviso.innerHTML = `<p>El carrito esta vacio</p>`
+        aviso.innerHTML = `<p>El carrito está vacío</p>`
         contenedorCarrito.appendChild(aviso)
     } else {
         carritoObjeto.forEach((producto) => {
+            botonCarrito()
             let div = document.createElement("div");
             div.innerHTML = `<div class="card mb-3" style="max-width: 540px;">
                                 <div class="row g-0">
@@ -131,17 +135,17 @@ buttonCart.addEventListener("click", () => {
     }
 
     // Mostrar total del carrito
-
     let total = document.createElement("div");
     if (carrito.length > 0) {
         total.innerHTML = `<div class="d-flex justify-content-around">
             <span>Total a pagar: $${calcularSumatoria(carrito)}</span>
-             <button class="btn btn-success">Pagar</button>
-        </div>`
+            <button class="btn btn-success">Pagar</button>
+        </div>`;
     }
 
-    contenedorCarrito.appendChild(total)
-})
+    contenedorCarrito.appendChild(total);
+}
+
 
 // Funcion para eliminar elementos del carrito
 
@@ -154,6 +158,7 @@ function quitarDelCarrito(indice) {
         carrito.splice(index, 1);
         actualizarLocalStorage();
         mostrarCarrito();
+        botonCarrito()
     } else {
         console.error("Producto no encontrado en el carrito:", indice);
     }
