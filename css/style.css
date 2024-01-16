@@ -18,3 +18,66 @@
         flex-direction: column;
     }
 }
+
+/* Estilos generales */
+.wrapper {
+    padding: 20px;
+}
+
+.filters {
+    flex-direction: column;
+}
+
+@media screen and (max-width: 600px) {
+    .dropdowns {
+        display: flex;
+        flex-direction: column;
+        justify-content: left;
+    }
+
+    .contenedorProductos {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+/* Estilos para pantallas pequeñas */
+@media screen and (max-width: 767px) {
+    .filters {
+        padding: 10px;
+    }
+
+    .dropdown {
+        margin-bottom: 10px;
+    }
+
+    .filters>div {
+        margin-bottom: 10px;
+    }
+
+    .contenedorProductos {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* Estilos para pantallas medianas */
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    .dropdown {
+        margin-right: 10px;
+    }
+}
+
+/* Estilos para pantallas grandes */
+@media screen and (min-width: 992px) {
+    .filters {
+        flex-direction: row;
+    }
+
+    .dropdown {
+        margin-right: 10px;
+    }
+}
