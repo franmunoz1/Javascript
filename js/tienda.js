@@ -151,11 +151,36 @@ function mostrarCarrito() {
     if (carrito.length > 0) {
         total.innerHTML = `<div class="d-flex justify-content-around">
             <span>Total a pagar: $${calcularSumatoria(carrito)}</span>
-            <button class="btn btn-success">Pagar</button>
+            <button id="buttonPagar" onclick="pagarCarrito()" class="btn btn-success">Pagar</button>
         </div>`;
     }
 
     contenedorCarrito.appendChild(total);
+}
+
+function pagarCarrito() {
+    Swal.fire({
+        title: "Estas seguro de realizar la compra?",
+        text: "Este cambio sera irreversible",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "Cancelar",
+        confirmButtonText: "Pagar"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                title: "Pago realizado con exito!",
+                text: "Pagaste! Por un total de: $" + calcularSumatoria(carrito) + " con la compra de " + carrito.length + " productos",
+                icon: "success"
+            });
+            carrito.splice(0, carrito.length)
+            actualizarLocalStorage()
+            mostrarCarrito()
+            botonCarrito()
+        }
+    });
 }
 
 
