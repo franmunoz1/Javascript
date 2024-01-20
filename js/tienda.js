@@ -161,7 +161,7 @@ function mostrarCarrito() {
 function pagarCarrito() {
     Swal.fire({
         title: "Estas seguro de realizar la compra?",
-        text: "Este cambio sera irreversible",
+        // text: "Este cambio sera irreversible",
         icon: "question",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
@@ -172,7 +172,7 @@ function pagarCarrito() {
         if (result.isConfirmed) {
             Swal.fire({
                 title: "Pago realizado con exito!",
-                text: "Pagaste! Por un total de: $" + calcularSumatoria(carrito) + " con la compra de " + carrito.length + " productos",
+                text: "Pagaste! Por un total de: $" + calcularSumatoria(carrito) + " con la compra de " + carrito.length + " producto/s",
                 icon: "success"
             });
             carrito.splice(0, carrito.length)
