@@ -1,4 +1,31 @@
+// Consumo de API de dolar para calcular el precio
 
+const API_URL = "https://criptoya.com/api/dolar"
+
+const divDolar = document.getElementById("tipoCambio")
+
+let valor
+let precioDolar
+
+setInterval(() => {
+    fetch(API_URL)
+        .then(response => response.json())
+        .then(({ blue }) => {
+            precioDolar = blue.bid
+
+            divDolar.innerHTML = `<a>Cotizacion dolar blue: ${precioDolar}</a>`
+
+            valor = calcularPrecioDolar(precioDolar)
+
+            mostrarCarrito()
+
+        })
+        .catch(error => console.log(error))
+}, 1000)
+
+function calcularPrecioDolar(precioDolar) {
+    return precioDolar * calcularSumatoria(carrito)
+}
 
 // Definicion de productos de la tienda de padel
 
@@ -152,7 +179,8 @@ function mostrarCarrito() {
     let total = document.createElement("div");
     if (carrito.length > 0) {
         total.innerHTML = `<div class="d-flex justify-content-around">
-            <span>Total a pagar: U$S${calcularSumatoria(carrito)}</span>
+            <span>Total a pagar (dolar): U$S${calcularSumatoria(carrito)}</span>
+            <span>Total a pagar (ARS): $${calcularPrecioDolar(precioDolar)}</span>
             <div id="divDolar"></div>
             <button id="buttonPagar" onclick="pagarCarrito()" class="btn btn-success">Pagar</button>
         </div>`;
@@ -175,7 +203,7 @@ function pagarCarrito() {
         if (result.isConfirmed) {
             Swal.fire({
                 title: "Pago realizado con exito!",
-                text: "Pagaste! Por un total de: $" + calcularSumatoria(carrito) + " con la compra de " + carrito.length + " producto/s",
+                text: "Pagaste! Por un total de: $" + calcularPrecioDolar(precioDolar) + " pesos, con su equivalente a: U$S" + calcularSumatoria(carrito) + " dolares, con la compra de " + carrito.length + " producto/s",
                 icon: "success"
             });
             carrito.splice(0, carrito.length)
@@ -354,29 +382,8 @@ buttonBrandBabolat.addEventListener("click", () => {
 });
 
 
-// Consumo de API de dolar para calcular el precio
 
-const API_URL = "https://criptoya.com/api/dolar"
 
-const divDolar = document.getElementById("divDolar")
 
-setInterval(() => {
-    fetch(API_URL)
-        .then(response => response.json())
-        .then(({ blue }) => {
-            precioDolar = blue.bid
-
-            let valor = calcularPrecioDolar(precioDolar)
-            console.log(valor)
-
-            divDolar.innerHTML = `<span>Total a pagar: $${valor}</span>`
-
-        })
-        .catch(error => console.log(error))
-}, 3000)
-
-function calcularPrecioDolar(precioDolar) {
-    return precioDolar * calcularSumatoria(carrito)
-}
 
 
