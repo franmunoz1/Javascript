@@ -41,11 +41,11 @@ const PRODUCTOS = [
     // Pelotas
     { indice: 7, marca: "bullpadel", modelo: "premium pro", categoria: "pelota", precio: 450, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/disenosintitulo20230629t1728316231c1ce3b27794a3a0fbf1688071104293510241024-1141edbb9228b4e26417048982180023-1024-1024.webp" },
     { indice: 8, marca: "babolat", modelo: "all court", categoria: "pelota", precio: 280, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/tubopelotasbabolatgoldallcourtx3tenis_1-b5f47e92a43d18718c17031978147630-1024-1024.webp" },
-    { indice: 9, marca: "head", modelo: "padel pro", categoria: "pelota", precio: 200, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/head21f6fb8e8c762a6936dc1693339431793710241024-7ac06482a40ba530ba17029996195683-1024-1024.webp" },
+    { indice: 9, marca: "head", modelo: "padel pro", categoria: "pelota", precio: 200, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/head21f6fb8e8c762a6936dc1693339431793710241024-5dc41cf7d8545cee5017060490092211-1024-1024.webp" },
     // Bolsos
     { indice: 10, marca: "varlion", modelo: "mike yanguas", categoria: "bolso", precio: 400, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/1b2d8d85f6775ca5c091699048018151110241024-6def95fdeac3c5accf17049009591258-1024-1024.webp" },
     { indice: 11, marca: "bullpadel", modelo: "flow", categoria: "bolso", precio: 450, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/bullpadel312edf7210b85c46de1b1695131507557810241024-653cfbd9b9d5cf3c1417036165224032-1024-1024.webp" },
-    { indice: 12, marca: "adidas", modelo: "ctrl 3.1", categoria: "bolso", precio: 450, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/146106d52f91d6e43da2921689280009724210241024-65f4b1c2d0cc36965217025773185257-1024-1024.webp" }
+    { indice: 12, marca: "adidas", modelo: "ctrl 3.1", categoria: "bolso", precio: 450, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/131162c00ffc4b43db868f1689261657531710241024-e8db9a7fd9d215767e17060247500980-1024-1024.webp" }
 ]
 
 // Definicion de carrito para luego almacenar productos y guardar elementos en local
