@@ -179,12 +179,16 @@ function mostrarCarrito() {
     // Mostrar total del carrito
     let total = document.createElement("div");
     if (carrito.length > 0) {
-        total.innerHTML = `<div class="d-flex justify-content-around">
-            <span>Total a pagar (dolar): U$S${calcularSumatoria(carrito)}</span>
-            <span>Total a pagar (ARS): $${calcularPrecioDolar(precioDolar)}</span>
-            <div id="divDolar"></div>
-            <button id="buttonPagar" onclick="pagarCarrito()" class="btn btn-success">Pagar</button>
-        </div>`;
+        total.innerHTML = `<div class="d-flex justify-content-around flex-column">
+                                <div>
+                                    <span>Total a pagar (Dolar): U$S${calcularSumatoria(carrito)}</span>
+                                    <span>Total a pagar (ARS): $${calcularPrecioDolar(precioDolar)}</span>
+                                </div>
+                                <div style="display: flex; justify-content:space-around; padding: 1rem;">
+                                    <button id="buttonPagar" onclick="pagarCarrito()" class="btn btn-success">Pagar</button>
+                                    <button id="buttonVaciar" onclick="vaciarCarrito()" class="btn btn-warning">Vaciar</button>
+                                </div>
+                            </div>`;
     }
 
     contenedorCarrito.appendChild(total);
@@ -207,6 +211,31 @@ function pagarCarrito() {
                 title: "Pago realizado con exito!",
                 html: `Pagaste! Por un total de: <b>$ ${calcularPrecioDolar(precioDolar)}</b> pesos, con su equivalente a: 
                        <b>U$S ${calcularSumatoria(carrito)}</b> dolares, con la compra de <b>${carrito.length} producto/s</b>`,
+                icon: "success"
+            });
+            carrito.splice(0, carrito.length)
+            actualizarLocalStorage()
+            mostrarCarrito()
+            botonCarrito()
+        }
+    });
+}
+
+// Boton de vaciar carrito con libreria SweetAlert
+
+function vaciarCarrito() {
+    Swal.fire({
+        title: "Estas seguro de vaciar todo el carrito?",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "Cancelar",
+        confirmButtonText: "Vaciar carrito"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                title: "Vaciaste todo el carrito",
                 icon: "success"
             });
             carrito.splice(0, carrito.length)
