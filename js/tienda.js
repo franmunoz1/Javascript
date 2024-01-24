@@ -1,6 +1,6 @@
 // Consumo de API de dolar para calcular el precio
 
-const API_URL = "https://criptoya.com/api/dolar"
+const API_URL = "https://api.bluelytics.com.ar/v2/latest"
 
 const divDolar = document.getElementById("tipoCambio")
 
@@ -11,7 +11,7 @@ setInterval(() => {
     fetch(API_URL)
         .then(response => response.json())
         .then(({ blue }) => {
-            precioDolar = blue.bid
+            precioDolar = blue.value_avg
 
             divDolar.innerHTML = `<a>Cotizacion dolar blue: ${precioDolar}</a>`
 
