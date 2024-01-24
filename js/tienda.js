@@ -136,6 +136,7 @@ let buttonCart = document.getElementById("buttonCart");
 buttonCart.addEventListener("click", mostrarCarrito);
 
 // Funcion para mostrar carrito
+
 function mostrarCarrito() {
     const carritoJson = JSON.stringify(carrito)
     localStorage.setItem("carrito", carritoJson)
@@ -189,6 +190,8 @@ function mostrarCarrito() {
     contenedorCarrito.appendChild(total);
 }
 
+// Boton de pagar carrito con libreria SweetAlert
+
 function pagarCarrito() {
     Swal.fire({
         title: "Estas seguro de realizar la compra?",
@@ -202,7 +205,8 @@ function pagarCarrito() {
         if (result.isConfirmed) {
             Swal.fire({
                 title: "Pago realizado con exito!",
-                html: `Pagaste! Por un total de: <b>$ ${calcularPrecioDolar(precioDolar)}</b> pesos, con su equivalente a: <b>U$S ${calcularSumatoria(carrito)}</b> dolares, con la compra de <b>${carrito.length} producto/s</b>`,
+                html: `Pagaste! Por un total de: <b>$ ${calcularPrecioDolar(precioDolar)}</b> pesos, con su equivalente a: 
+                       <b>U$S ${calcularSumatoria(carrito)}</b> dolares, con la compra de <b>${carrito.length} producto/s</b>`,
                 icon: "success"
             });
             carrito.splice(0, carrito.length)
@@ -379,10 +383,3 @@ buttonBrandBabolat.addEventListener("click", () => {
     let filtroBabolat = filtrarProductosMarca("babolat");
     mostrarProductos(filtroBabolat);
 });
-
-
-
-
-
-
-
