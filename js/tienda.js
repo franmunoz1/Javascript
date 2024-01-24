@@ -1,12 +1,41 @@
+// Consumo de API de dolar para calcular el precio
+
+const API_URL = "https://criptoya.com/api/dolar"
+
+const divDolar = document.getElementById("tipoCambio")
+
+let valor
+let precioDolar
+
+setInterval(() => {
+    fetch(API_URL)
+        .then(response => response.json())
+        .then(({ blue }) => {
+            precioDolar = blue.bid
+
+            divDolar.innerHTML = `<a>Cotizacion dolar blue: ${precioDolar}</a>`
+
+            valor = calcularPrecioDolar(precioDolar)
+
+            mostrarCarrito()
+
+        })
+        .catch(error => console.log(error))
+}, 1000)
+
+function calcularPrecioDolar(precioDolar) {
+    return precioDolar * calcularSumatoria(carrito)
+}
+
 // Definicion de productos de la tienda de padel
 
 const PRODUCTOS = [
     // paletas
-    { indice: 0, marca: "nox", modelo: "ml10", categoria: "paleta", peso: 350, material: "fibra", forma: "redonda", precio: 280, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/11712abbf97e7b2bcae3e11690228169840110241024-ef113820ef26a6151f17045483999676-1024-1024.webp" },
+    { indice: 0, marca: "nox", modelo: "ml10", categoria: "paleta", peso: 350, material: "fibra", forma: "redonda", precio: 280, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/paletanoxat10genius12karena2023_1-03f3af172f7a5dfbf717055867231432-1024-1024.webp" },
     { indice: 1, marca: "head", modelo: "delta", categoria: "paleta", peso: 380, material: "carbono", forma: "diamante", precio: 200, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/141e601bce500d13ef9791688506029202910241024-0a80e0468184d8864317053299193722-1024-1024.webp" },
     { indice: 2, marca: "babolat", modelo: "counter", categoria: "paleta", peso: 360, material: "fibra", forma: "hibrida", precio: 400, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/16130654e25e5061dd5611694645239469910241024-3724ed87f19c31683c17050002106783-1024-1024.webp" },
     { indice: 3, marca: "bullpadel", modelo: "vertex03", categoria: "paleta", peso: 370, material: "carbono", forma: "redonda", precio: 450, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/1161545b39048afe8192fd1688572899228310241024-0d71882ffa56e205d317044838419657-1024-1024.webp" },
-    { indice: 4, marca: "nox", modelo: "ml10", categoria: "paleta", peso: 350, material: "fibra", forma: "diamante", precio: 280, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/11712abbf97e7b2bcae3e11690228169840110241024-ef113820ef26a6151f17045483999676-1024-1024.webp" },
+    { indice: 4, marca: "nox", modelo: "ml10", categoria: "paleta", peso: 350, material: "fibra", forma: "diamante", precio: 280, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/151e47c4fc828686f6d751690213484089710241024-aba36c83b6de894a1a17055894290172-1024-1024.webp" },
     { indice: 5, marca: "head", modelo: "delta", categoria: "paleta", peso: 380, material: "carbono", forma: "hibrida", precio: 200, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/deltapro_1-9b1a39ac7fa3a6586117048186521136-1024-1024.webp" },
     { indice: 6, marca: "babolat", modelo: "counter", categoria: "paleta", peso: 360, material: "fibra", forma: "redonda", precio: 400, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/17152dece2f6d47b0526f1694645315367610241024-29076ff32dc3010a1617044820737508-1024-1024.webp" },
     // pelotas
@@ -150,7 +179,9 @@ function mostrarCarrito() {
     let total = document.createElement("div");
     if (carrito.length > 0) {
         total.innerHTML = `<div class="d-flex justify-content-around">
-            <span>Total a pagar: $${calcularSumatoria(carrito)}</span>
+            <span>Total a pagar (dolar): U$S${calcularSumatoria(carrito)}</span>
+            <span>Total a pagar (ARS): $${calcularPrecioDolar(precioDolar)}</span>
+            <div id="divDolar"></div>
             <button id="buttonPagar" onclick="pagarCarrito()" class="btn btn-success">Pagar</button>
         </div>`;
     }
@@ -172,7 +203,7 @@ function pagarCarrito() {
         if (result.isConfirmed) {
             Swal.fire({
                 title: "Pago realizado con exito!",
-                text: "Pagaste! Por un total de: $" + calcularSumatoria(carrito) + " con la compra de " + carrito.length + " producto/s",
+                text: "Pagaste! Por un total de: $" + calcularPrecioDolar(precioDolar) + " pesos, con su equivalente a: U$S" + calcularSumatoria(carrito) + " dolares, con la compra de " + carrito.length + " producto/s",
                 icon: "success"
             });
             carrito.splice(0, carrito.length)
@@ -349,6 +380,10 @@ buttonBrandBabolat.addEventListener("click", () => {
     let filtroBabolat = filtrarProductosMarca("babolat");
     mostrarProductos(filtroBabolat);
 });
+
+
+
+
 
 
 
