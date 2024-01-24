@@ -30,7 +30,7 @@ function calcularPrecioDolar(precioDolar) {
 // Definicion de productos de la tienda de padel
 
 const PRODUCTOS = [
-    // paletas
+    // Paletas
     { indice: 0, marca: "nox", modelo: "ml10", categoria: "paleta", peso: 350, material: "fibra", forma: "redonda", precio: 280, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/paletanoxat10genius12karena2023_1-03f3af172f7a5dfbf717055867231432-1024-1024.webp" },
     { indice: 1, marca: "head", modelo: "delta", categoria: "paleta", peso: 380, material: "carbono", forma: "diamante", precio: 200, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/141e601bce500d13ef9791688506029202910241024-0a80e0468184d8864317053299193722-1024-1024.webp" },
     { indice: 2, marca: "babolat", modelo: "counter", categoria: "paleta", peso: 360, material: "fibra", forma: "hibrida", precio: 400, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/16130654e25e5061dd5611694645239469910241024-3724ed87f19c31683c17050002106783-1024-1024.webp" },
@@ -38,11 +38,11 @@ const PRODUCTOS = [
     { indice: 4, marca: "nox", modelo: "ml10", categoria: "paleta", peso: 350, material: "fibra", forma: "diamante", precio: 280, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/151e47c4fc828686f6d751690213484089710241024-aba36c83b6de894a1a17055894290172-1024-1024.webp" },
     { indice: 5, marca: "head", modelo: "delta", categoria: "paleta", peso: 380, material: "carbono", forma: "hibrida", precio: 200, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/deltapro_1-9b1a39ac7fa3a6586117048186521136-1024-1024.webp" },
     { indice: 6, marca: "babolat", modelo: "counter", categoria: "paleta", peso: 360, material: "fibra", forma: "redonda", precio: 400, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/17152dece2f6d47b0526f1694645315367610241024-29076ff32dc3010a1617044820737508-1024-1024.webp" },
-    // pelotas
+    // Pelotas
     { indice: 7, marca: "bullpadel", modelo: "premium pro", categoria: "pelota", precio: 450, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/disenosintitulo20230629t1728316231c1ce3b27794a3a0fbf1688071104293510241024-1141edbb9228b4e26417048982180023-1024-1024.webp" },
     { indice: 8, marca: "babolat", modelo: "all court", categoria: "pelota", precio: 280, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/tubopelotasbabolatgoldallcourtx3tenis_1-b5f47e92a43d18718c17031978147630-1024-1024.webp" },
     { indice: 9, marca: "head", modelo: "padel pro", categoria: "pelota", precio: 200, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/head21f6fb8e8c762a6936dc1693339431793710241024-7ac06482a40ba530ba17029996195683-1024-1024.webp" },
-    // bolsos
+    // Bolsos
     { indice: 10, marca: "varlion", modelo: "mike yanguas", categoria: "bolso", precio: 400, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/1b2d8d85f6775ca5c091699048018151110241024-6def95fdeac3c5accf17049009591258-1024-1024.webp" },
     { indice: 11, marca: "bullpadel", modelo: "flow", categoria: "bolso", precio: 450, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/bullpadel312edf7210b85c46de1b1695131507557810241024-653cfbd9b9d5cf3c1417036165224032-1024-1024.webp" },
     { indice: 12, marca: "adidas", modelo: "ctrl 3.1", categoria: "bolso", precio: 450, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/146106d52f91d6e43da2921689280009724210241024-65f4b1c2d0cc36965217025773185257-1024-1024.webp" }
