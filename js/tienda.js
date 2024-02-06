@@ -31,7 +31,7 @@ function calcularPrecioDolar(precioDolar) {
 
 const PRODUCTOS = [
     // Paletas
-    { indice: 0, marca: "nox", modelo: "ml10", categoria: "paleta", peso: 350, material: "fibra", forma: "redonda", precio: 280, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/11712abbf97e7b2bcae3e11690228169840110241024-2544373b02aafe3baf17060457323440-1024-1024.webp" },
+    { indice: 0, marca: "nox", modelo: "ml10", categoria: "paleta", peso: 350, material: "fibra", forma: "redonda", precio: 280, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/11712abbf97e7b2bcae3e11690228169840110241024-289a0db6311f6d50fe17072310144850-1024-1024.webp" },
     { indice: 1, marca: "head", modelo: "delta", categoria: "paleta", peso: 380, material: "carbono", forma: "diamante", precio: 200, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/paletaheaddeltapro22_1-3d6117fe0d16ec809a17060127097328-1024-1024.webp" },
     { indice: 2, marca: "babolat", modelo: "counter", categoria: "paleta", peso: 360, material: "fibra", forma: "hibrida", precio: 400, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/1317191cd868b489def281694644742496410241024-6b3581969138d21a0d17066260002991-1024-1024.webp" },
     { indice: 3, marca: "bullpadel", modelo: "vertex03", categoria: "paleta", peso: 370, material: "carbono", forma: "redonda", precio: 450, image: "https://acdn.mitiendanube.com/stores/003/106/548/products/1161545b39048afe8192fd1688572899228310241024-3cc5d5a29af56b1bab17067132438902-1024-1024.webp" },
